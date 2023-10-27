@@ -1,0 +1,33 @@
+<!--# This will be displayed at the heather Level 2-->
+<h2>Travel Wishlist</h2>
+
+<form method="POST" action="{% url 'place_list' %}">
+    {% csrf_token %}
+    {{ new_place_form }}
+    <button type="submit">Add</button>
+</form>
+
+<!--# add a django template tag %-->
+{% for place in places %}
+<!--# let's create a div which is a container-->
+<div>
+    {{ place.name }}
+
+    <form method="POST" action="{% url 'place_was_visited' place.pk%}">
+        {% csrf_token %}
+        <button>Visited!</button>
+    </form>
+
+</div>
+
+<!--# let add a directive-->
+{% empty %}
+
+<p>You have no places in your wishlist.</p>
+
+<!-- # endfor to save that-->
+{% endfor %}
+
+<a href="{% url 'places_visited' %}">Places you've visited</a>
+
+<!---->
