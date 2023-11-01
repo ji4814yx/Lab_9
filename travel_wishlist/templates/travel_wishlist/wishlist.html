@@ -6,16 +6,15 @@
 <form method="POST" action="{% url 'place_list' %}">
     {% csrf_token %}
     {{ new_place_form }}
-    <button type="submit">Add</button>
+    <button id="add-new-place" type="submit">Add</button>
 </form>
 <!--# add a django template tag %-->
 {% for place in places %}
 <!--# let's create a div which is a container-->
 <div class="wishlist-place">
-
     <span class="place-name">{{ place.name }}</span>
 
-    <form class="visited-form" method="POST" action="{% url 'place_was_visited' place.pk%}">
+    <form class="visited-form" method="POST" action="{% url 'place_was_visited' place.pk %}">
         {% csrf_token %}
         <button>Visited!</button>
     </form>
